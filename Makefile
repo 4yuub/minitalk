@@ -1,7 +1,7 @@
 INC = mylib.h
 
 SERVER_SRCS = server.c ft_print.c
-CLIENT_SRCS = client.c ft_atoi.c
+CLIENT_SRCS = client.c ft_atoi.c ft_print.c
 
 SERVER_OBJS = $(SERVER_SRCS:.c=.o)
 CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
