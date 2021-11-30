@@ -6,7 +6,7 @@
 /*   By: akarafi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 20:44:23 by akarafi           #+#    #+#             */
-/*   Updated: 2021/11/30 22:01:27 by akarafi          ###   ########.fr       */
+/*   Updated: 2021/11/30 23:53:22 by akarafi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,9 @@ void	send_byte(char byte, int pid)
 
 void	handler(int sig)
 {
-	static int	i;
-
-	if (sig == SIGUSR1)
-	{
-		write(1, "\nServer: done!\n", 15);
-		exit(0);
-	}
-	else
-	{
-		write(1, "\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r", 35);
-		write(1, "Server: signal received ", 24);
-		ft_putnbr(++i);
-	}
+	(void) sig;
+	write(1, "Server: done!\n", 14);
+	exit(0);
 }
 
 int	main(int ac, char *av[])
@@ -93,7 +83,6 @@ int	main(int ac, char *av[])
 	s = av[2];
 	i = 0;
 	signal(SIGUSR1, handler);
-	signal(SIGUSR2, handler);
 	while (s[i])
 		send_byte(s[i++], pid);
 	send_byte(0, pid);

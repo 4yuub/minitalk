@@ -6,7 +6,7 @@
 /*   By: akarafi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 03:04:52 by akarafi           #+#    #+#             */
-/*   Updated: 2021/11/30 21:13:10 by akarafi          ###   ########.fr       */
+/*   Updated: 2021/11/30 23:51:39 by akarafi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	handle_sig(int sig, siginfo_t *info, void *context)
 	static int	sign;
 
 	(void) context;
-	kill(info->si_pid, SIGUSR2);
 	if (!n && sig == SIGUSR2)
 		sign = -1;
 	else if (n == 0)
