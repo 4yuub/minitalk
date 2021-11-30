@@ -62,6 +62,11 @@ int main(int ac, char *av[])
 	char 	*s;
 	int 	i;
 
+	if (ac != 3)
+	{
+		write(1, "args error", 10);
+		exit(1);
+	}
 	pid = ft_atoi(av[1]);
 	s = av[2];
 	i = 0;
