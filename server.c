@@ -6,7 +6,7 @@
 /*   By: akarafi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 03:04:52 by akarafi           #+#    #+#             */
-/*   Updated: 2021/11/30 18:18:04 by akarafi          ###   ########.fr       */
+/*   Updated: 2021/11/30 20:44:10 by akarafi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	handle_sig(int sig, siginfo_t *info, void *context)
 {
-	static	int	n;
-	static	char c;
-	static 	int sign;
+	static int	n;
+	static char	c;
+	static int	sign;
 
 	(void) context;
 	if (!n && sig == SIGUSR2)
@@ -39,7 +39,7 @@ void	handle_sig(int sig, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	sa.sa_sigaction = &handle_sig;
 	sa.sa_flags = SA_SIGINFO;

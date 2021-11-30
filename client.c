@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akarafi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/30 20:44:23 by akarafi           #+#    #+#             */
+/*   Updated: 2021/11/30 20:45:49 by akarafi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mylib.h"
 
 char	*get_bin(char byte)
@@ -49,18 +61,18 @@ void	send_byte(char byte, int pid)
 	free(bin);
 }
 
-void handler(int sig)
+void	handler(int sig)
 {
 	(void) sig;
 	write(1, "Server: done!\n", 14);
 	exit(0);
 }
 
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
-	int 	pid;
-	char 	*s;
-	int 	i;
+	int		pid;
+	char	*s;
+	int		i;
 
 	if (ac != 3)
 	{
