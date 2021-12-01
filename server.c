@@ -6,11 +6,20 @@
 /*   By: akarafi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 03:04:52 by akarafi           #+#    #+#             */
-/*   Updated: 2021/11/30 23:51:39 by akarafi          ###   ########.fr       */
+/*   Updated: 2021/12/01 01:41:38 by akarafi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mylib.h"
+
+int	g_pid = 0;
+
+void	reset(siginfo_t *info, int *n, char *c)
+{
+	*c = 0;
+	*n = 0;
+	g_pid = info->si_pid;
+}
 
 void	handle_sig(int sig, siginfo_t *info, void *context)
 {
@@ -19,12 +28,14 @@ void	handle_sig(int sig, siginfo_t *info, void *context)
 	static int	sign;
 
 	(void) context;
+	if (g_pid != info->si_pid)
+		reset(info, &n, &c);
 	if (!n && sig == SIGUSR2)
 		sign = -1;
 	else if (n == 0)
 		sign = 1;
 	else
-		c = c << 1 | sig - 30;
+		c = c << 1 | sig - SIGUSR1;
 	n++;
 	if (n == 9)
 	{
